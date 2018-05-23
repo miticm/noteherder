@@ -36,13 +36,18 @@ class Main extends React.Component {
         this.setState({ notes })
         this.setCurrentNote(note)
       }
+    deleteNote = (note) => {
+        const notes = this.state.notes.filter(n => n !== note)
+        this.setState({notes})
+        this.clearCurrentNote()
+    }
     
     render() {
         return (
             <div className="Main" style={style}>
                 <Sidebar clearCurrentNote={this.clearCurrentNote}/>
                 <NoteList notes={this.state.notes} setCurrentNote={this.setCurrentNote} />
-                <NoteForm currentNote={this.state.currentNote} saveNote={this.saveNote}/>
+                <NoteForm currentNote={this.state.currentNote} saveNote={this.saveNote} deleteNote={this.deleteNote}/>
             </div>
         )
     }
