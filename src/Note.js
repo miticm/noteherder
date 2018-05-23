@@ -1,7 +1,7 @@
 import React from "react"
 
 const Note = (props) => (
-    <a className="active" onClick={()=>props.changeCurrentNote(props.note)}>
+    <a className="active" onClick={()=>props.setCurrentNote(props.note)}>
     <li>
       <div className="note">
         <div className="note-title">

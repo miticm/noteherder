@@ -6,8 +6,8 @@ const NoteList = (props) => (
     <div className="NoteList">
         <h3>Notes</h3>
         <ul id="notes">
-            {props.list.map(note =>
-                <Note note={note} key={note.id} changeCurrentNote={props.changeCurrentNote} />
+            {props.notes.map(note =>
+                <Note note={note} key={note.id} setCurrentNote={props.setCurrentNote} />
             )}
         </ul>
     </div>
