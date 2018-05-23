@@ -1,7 +1,7 @@
 import React from 'react'
 import './NoteForm.css'
 
-const NoteForm = (props) => (
+const NoteForm = ({currentNote}) => (
     <div className="NoteForm">
         <div className="form-actions">
             <button type="button">
@@ -13,15 +13,10 @@ const NoteForm = (props) => (
               <input
                 type="text"
                 name="title"
-                placeholder={
-                  props.state.activeListItem===-1?
-                  "Title your note":
-                  props.state.list[props.state.activeListItem].title}
+                placeholder={currentNote.title}
               />
             </p>
-            <textarea name="body" placeholder={ props.state.activeListItem===-1?
-                  "":
-                  props.state.list[props.state.activeListItem].body}></textarea>
+            <textarea name="body" placeholder={currentNote.body}></textarea>
           </form>
     </div>
 )

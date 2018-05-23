@@ -1,19 +1,19 @@
 import React from "react"
 
-const NodeListItem = (props) => (
-    <a className="active" onClick={()=>props.handleClick(props.index)}>
+const Note = (props) => (
+    <a className="active" onClick={()=>props.changeCurrentNote(props.note)}>
     <li>
       <div className="note">
         <div className="note-title">
-            {props.title}
+            {props.note.title}
         </div>
         <div className="note-body">
           <p>
-            {props.body}
+            {props.note.body}
           </p>
         </div>
       </div>
     </li>
   </a>
 )
-export default NodeListItem
+export default Note

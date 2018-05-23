@@ -3,12 +3,15 @@ import quill from './quill.svg'
 import newIcon from './new.png'
 import newHover from './new-hover.png'
 import './Sidebar.css'
-const Sidebar = () => (
+const Sidebar = ({clearCurrentNote}) => (
     <nav className="Sidebar">
         <div className="logo">
             <img src={quill} alt="Noteherder" />
         </div>
-        <a className="new-note" href="/notes" >
+        <a className="new-note" href="/notes" onClick={(e)=>{
+            e.preventDefault()
+            clearCurrentNote()
+        }}  >
             <img src={newHover} alt="New note" />
             <img className="outline" src={newIcon} alt="New note" />
         </a>
