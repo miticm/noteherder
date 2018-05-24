@@ -17,21 +17,14 @@ class Main extends React.Component {
             notes: [],
         }
     }
-    componentDidMount = () =>{
-        // const notes = []
-        // Object.keys(localStorage).forEach(d=>{
-        //     notes.push(JSON.parse(localStorage.getItem(d)))
-        // })
-        // this.setState({
-        //     notes
-        // })
+    componentDidMount = () => {
         base.syncState(`notes`, {
             context: this,
             state: 'notes',
             asArray: true
-          });
+        });
     }
-    emptyNote= () => ({
+    emptyNote = () => ({
         id: null,
         title: "",
         body: "",
@@ -47,29 +40,28 @@ class Main extends React.Component {
     saveNote = (note) => {
         const notes = [...this.state.notes]
         if (note.id) {
-          const i = notes.findIndex(currentNote => currentNote.id === note.id)
-          notes[i] = note
+            const i = notes.findIndex(currentNote => currentNote.id === note.id)
+            notes[i] = note
         } else {
-          note.id = Date.now()
-          notes.push(note)
+            note.id = Date.now()
+            notes.push(note)
         }
         this.setState({ notes })
         this.setCurrentNote(note)
-        // localStorage.setItem(note.id,JSON.stringify(note))
-      }
+    }
     deleteNote = (note) => {
         const notes = this.state.notes.filter(n => n !== note)
-        this.setState({notes})
+        this.setState({ notes })
         this.clearCurrentNote()
-        // localStorage.removeItem(note.id)
     }
-    
     render() {
         return (
             <div className="Main" style={style}>
-                <Sidebar clearCurrentNote={this.clearCurrentNote}/>
+                <Sidebar clearCurrentNote={this.clearCurrentNote} />
                 <NoteList notes={this.state.notes} setCurrentNote={this.setCurrentNote} />
-                <NoteForm currentNote={this.state.currentNote} saveNote={this.saveNote} deleteNote={this.deleteNote}/>
+                <NoteForm currentNote={this.state.currentNote}
+                    saveNote={this.saveNote}
+                    deleteNote={this.deleteNote} />
             </div>
         )
     }
