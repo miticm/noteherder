@@ -2,12 +2,7 @@ import React from 'react'
 import Sidebar from './Sidebar';
 import NoteList from './NoteList';
 import NoteForm from './NoteForm';
-const Rebase = require('re-base');
-const firebase = require('firebase');
-const app = firebase.initializeApp({
-    //secret
-})
-const base = Rebase.createClass(app.database());
+import base from './base'
 
 class Main extends React.Component {
     constructor() {
@@ -17,7 +12,7 @@ class Main extends React.Component {
             notes: [],
         }
     }
-    componentDidMount = () => {
+    componentWillMount = () => {
         base.syncState(`notes`, {
             context: this,
             state: 'notes',
@@ -57,7 +52,7 @@ class Main extends React.Component {
     render() {
         return (
             <div className="Main" style={style}>
-                <Sidebar clearCurrentNote={this.clearCurrentNote} />
+                <Sidebar clearCurrentNote={this.clearCurrentNote} signOut = {this.props.signOut} />
                 <NoteList notes={this.state.notes} setCurrentNote={this.setCurrentNote} />
                 <NoteForm currentNote={this.state.currentNote}
                     saveNote={this.saveNote}

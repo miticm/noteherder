@@ -3,7 +3,7 @@ import quill from './quill.svg'
 import newIcon from './new.png'
 import newHover from './new-hover.png'
 import './Sidebar.css'
-const Sidebar = ({clearCurrentNote}) => (
+const Sidebar = ({clearCurrentNote, signOut}) => (
     <nav className="Sidebar">
         <div className="logo">
             <img src={quill} alt="Noteherder" />
@@ -16,7 +16,7 @@ const Sidebar = ({clearCurrentNote}) => (
             <img className="outline" src={newIcon} alt="New note" />
         </a>
         <div className="SignOut">
-            <button>
+            <button onClick={signOut}>
                 <i className="fa fa-sign-out" />
             </button>
         </div>
