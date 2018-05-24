@@ -11,6 +11,15 @@ class Main extends React.Component {
             notes: [],
         }
     }
+    componentDidMount = () =>{
+        const notes = []
+        Object.keys(localStorage).forEach(d=>{
+            notes.push(JSON.parse(localStorage.getItem(d)))
+        })
+        this.setState({
+            notes
+        })
+    }
     emptyNote= () => ({
         id: null,
         title: "",
@@ -35,11 +44,13 @@ class Main extends React.Component {
         }
         this.setState({ notes })
         this.setCurrentNote(note)
+        localStorage.setItem(note.id,JSON.stringify(note))
       }
     deleteNote = (note) => {
         const notes = this.state.notes.filter(n => n !== note)
         this.setState({notes})
         this.clearCurrentNote()
+        localStorage.removeItem(note.id)
     }
     
     render() {
