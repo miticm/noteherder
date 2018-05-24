@@ -2,6 +2,12 @@ import React from 'react'
 import Sidebar from './Sidebar';
 import NoteList from './NoteList';
 import NoteForm from './NoteForm';
+const Rebase = require('re-base');
+const firebase = require('firebase');
+const app = firebase.initializeApp({
+    //secret
+})
+const base = Rebase.createClass(app.database());
 
 class Main extends React.Component {
     constructor() {
@@ -12,13 +18,18 @@ class Main extends React.Component {
         }
     }
     componentDidMount = () =>{
-        const notes = []
-        Object.keys(localStorage).forEach(d=>{
-            notes.push(JSON.parse(localStorage.getItem(d)))
-        })
-        this.setState({
-            notes
-        })
+        // const notes = []
+        // Object.keys(localStorage).forEach(d=>{
+        //     notes.push(JSON.parse(localStorage.getItem(d)))
+        // })
+        // this.setState({
+        //     notes
+        // })
+        base.syncState(`notes`, {
+            context: this,
+            state: 'notes',
+            asArray: true
+          });
     }
     emptyNote= () => ({
         id: null,
@@ -44,13 +55,13 @@ class Main extends React.Component {
         }
         this.setState({ notes })
         this.setCurrentNote(note)
-        localStorage.setItem(note.id,JSON.stringify(note))
+        // localStorage.setItem(note.id,JSON.stringify(note))
       }
     deleteNote = (note) => {
         const notes = this.state.notes.filter(n => n !== note)
         this.setState({notes})
         this.clearCurrentNote()
-        localStorage.removeItem(note.id)
+        // localStorage.removeItem(note.id)
     }
     
     render() {
