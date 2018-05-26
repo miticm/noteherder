@@ -5,15 +5,15 @@ import NoteForm from './NoteForm';
 import base from './base'
 
 class Main extends React.Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = {
             currentNote: this.emptyNote(),
             notes: [],
         }
     }
     componentWillMount = () => {
-        base.syncState(`notes`, {
+        base.syncState(this.props.uid, {
             context: this,
             state: 'notes',
             asArray: true

@@ -9,7 +9,6 @@ const NoteForm = ({ currentNote, saveNote, deleteNote }) => {
   }
   return (
     <div className="NoteForm">
-
       <div className="form-actions">
         <button type="button" onClick={() => deleteNote(currentNote)}>
           <i className="fa fa-trash-o"></i>
