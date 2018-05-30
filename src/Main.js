@@ -10,7 +10,6 @@ class Main extends Component {
     constructor() {
         super()
         this.state = {
-            currentNote: this.blankNote(),
             notes: [],
         }
     }
@@ -21,22 +20,6 @@ class Main extends Component {
             state: 'notes',
             asArray: true,
         })
-    }
-
-    blankNote = () => {
-        return {
-            id: null,
-            title: '',
-            body: '',
-        }
-    }
-
-    setCurrentNote = (note) => {
-        this.setState({ currentNote: note })
-    }
-
-    resetCurrentNote = () => {
-        this.setCurrentNote(this.blankNote())
     }
 
     saveNote = (note) => {
