@@ -79,10 +79,7 @@ class Main extends Component {
                 className="Main"
                 style={style}
             >
-                <Sidebar
-                    resetCurrentNote={this.resetCurrentNote}
-                    signOut={this.props.signOut}
-                />
+                <Sidebar signOut={this.props.signOut} />
                 <NoteList notes={this.state.notes} />
                 <Switch>
                     <Route
