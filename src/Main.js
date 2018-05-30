@@ -13,7 +13,7 @@ class Main extends React.Component {
         }
     }
     componentWillMount = () => {
-        base.syncState(this.props.uid, {
+        base.syncState(`notes/${this.props.uid}`, {
             context: this,
             state: 'notes',
             asArray: true
@@ -52,7 +52,7 @@ class Main extends React.Component {
     render() {
         return (
             <div className="Main" style={style}>
-                <Sidebar clearCurrentNote={this.clearCurrentNote} signOut = {this.props.signOut} />
+                <Sidebar clearCurrentNote={this.clearCurrentNote} signOut={this.props.signOut} />
                 <NoteList notes={this.state.notes} setCurrentNote={this.setCurrentNote} />
                 <NoteForm currentNote={this.state.currentNote}
                     saveNote={this.saveNote}
