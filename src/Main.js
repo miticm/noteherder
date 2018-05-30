@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Switch, Route } from 'react-router-dom'
+
 import base from './base'
 import Sidebar from './Sidebar'
 import NoteList from './NoteList'
@@ -29,6 +30,7 @@ class Main extends Component {
             body: '',
         }
     }
+
     setCurrentNote = (note) => {
         this.setState({ currentNote: note })
     }
@@ -67,9 +69,9 @@ class Main extends Component {
 
     render() {
         const formProps = {
-            currentNote: this.state.currentNote,
             saveNote: this.saveNote,
             removeCurrentNote: this.removeCurrentNote,
+            notes: this.state.notes,
         }
 
         return (
@@ -101,10 +103,13 @@ class Main extends Component {
                         )}
                     />
                 </Switch>
+
+
             </div>
         )
     }
 }
+
 const style = {
     display: 'flex',
     height: '100vh',
