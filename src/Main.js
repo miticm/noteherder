@@ -40,6 +40,7 @@ class Main extends Component {
     }
 
     saveNote = (note) => {
+        let shouldRedirect = false
         const notes = [...this.state.notes]
 
         if (note.id) {
@@ -50,27 +51,34 @@ class Main extends Component {
             // new note
             note.id = Date.now()
             notes.push(note)
+            shouldRedirect = true
         }
 
-        this.setState({ notes, currentNote: note })
+        this.setState(
+            { notes },
+            () => {
+                if (shouldRedirect) {
+                    this.props.history.push(`/notes/${note.id}`)
+                }
+            }
+        )
     }
 
-    removeCurrentNote = () => {
+    removeNote = (currentNote) => {
         const notes = [...this.state.notes]
-        const i = notes.findIndex(note => note.id === this.state.currentNote.id)
+        const i = notes.findIndex(note => note.id === currentNote.id)
 
         if (i > -1) {
             notes.splice(i, 1)
             this.setState({ notes })
+            this.props.history.push('/notes')
         }
-
-        this.resetCurrentNote()
     }
 
     render() {
         const formProps = {
             saveNote: this.saveNote,
-            removeCurrentNote: this.removeCurrentNote,
+            removeNote: this.removeNote,
             notes: this.state.notes,
         }
 
