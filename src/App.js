@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Switch, Route, Redirect } from 'react-router-dom'
+
 import './App.css'
 import { auth } from './base'
 import Main from './Main'
@@ -10,7 +11,7 @@ class App extends Component {
     uid: null,
   }
 
-  componentWillMount = () => {
+  componentWillMount() {
     const uid = localStorage.getItem('uid')
     if (uid) {
       this.setState({ uid })
@@ -50,17 +51,21 @@ class App extends Component {
         <Switch>
           <Route
             path="/sign-in"
-            render={() => (
+            render={navProps => (
               this.signedIn()
                 ? <Redirect to="/notes" />
-                : <SignIn />
+                : <SignIn {...navProps} />
             )}
           />
           <Route
             path="/notes"
-            render={() => (
+            render={navProps => (
               this.signedIn()
-                ? <Main signOut={this.signOut} uid={this.state.uid} />
+                ? <Main
+                  signOut={this.signOut}
+                  uid={this.state.uid}
+                  {...navProps}
+                />
                 : <Redirect to="/sign-in" />
             )}
           />
