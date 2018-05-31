@@ -27,12 +27,14 @@ class NoteForm extends Component {
       id: null,
       title: '',
       body: '',
+      modifiedTime: Date.now(),
     }
   }
 
   handleChanges = (ev) => {
     const note = { ...this.state.note }
     note[ev.target.name] = ev.target.value
+    note.modifiedTime = Date.now()
     this.props.saveNote(note)
     this.setState({ note })
   }
@@ -50,7 +52,7 @@ class NoteForm extends Component {
             <i className="far fa-trash-alt"></i>
           </button>
         </div>
-        <form>
+        <form onSubmit={(e) => { e.preventDefault() }}>
           <p>
             <input
               type="text"

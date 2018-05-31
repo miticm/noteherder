@@ -36,6 +36,7 @@ class Main extends Component {
             notes.push(note)
             shouldRedirect = true
         }
+        notes.sort((a, b) => b.modifiedTime - a.modifiedTime)
 
         this.setState(
             { notes },

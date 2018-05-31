@@ -21,7 +21,7 @@ const SignIn = () => {
         <button
           className="github"
           onClick={() => authenticate(githubProvider)}>
-          <i className="fab fa-github"></i>
+          <i className="fab fa-github"></i>&nbsp;
           Sign in with GitHub
         </button>
         <button className="google" onClick={() => authenticate(GoogleAuthProvider)}>
